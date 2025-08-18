@@ -37,7 +37,7 @@ import {
     <p>Hole is Par {{ par() }} You are on stroke {{ strokeCount() }}</p>
 
     <button (click)="takeAStroke()" class="btn btn-primary">
-      Take a Swing
+      Take a Swing (go to ) {{ nextShot() }}
     </button>
     <button
       [disabled]="strokeCount() === 0"
@@ -64,6 +64,7 @@ export class BasicSignals {
 
   par = signal<3 | 4 | 5>(4);
   strokeCount = signal(0);
+  nextShot = computed(() => this.strokeCount() + 1);
   atPar = computed(() => {
     return this.par() === this.strokeCount();
   });
