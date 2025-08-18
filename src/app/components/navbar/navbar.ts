@@ -36,7 +36,7 @@ import { RouterLink } from '@angular/router';
             }
           </ul>
         </div>
-        <a class="btn btn-ghost text-xl">Applied Angular</a>
+        <a routerLink="home" class="btn btn-ghost text-xl">Applied Angular</a>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
