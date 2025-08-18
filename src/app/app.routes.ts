@@ -12,6 +12,11 @@ export const routes: Routes = [
     component: About,
   },
   {
+    path: 'demos',
+    loadChildren: () =>
+      import('../demos/demos.routes').then((r) => r.DEMO_ROUTES),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
