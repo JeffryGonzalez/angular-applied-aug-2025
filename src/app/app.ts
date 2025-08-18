@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <main class="container mx-auto">
       <h1>Applied Angular Is Starting Soon!</h1>
+      <p>This is the class</p>
     </main>
   `,
   styles: [],
