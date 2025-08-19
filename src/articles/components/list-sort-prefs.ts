@@ -1,10 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  signal,
-  output,
-  model,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, model } from '@angular/core';
 import { ArticleSortOptions } from '../types';
 
 @Component({
@@ -30,5 +24,5 @@ import { ArticleSortOptions } from '../types';
   styles: ``,
 })
 export class ListSortPrefs {
-  sortOption = model<ArticleSortOptions>('oldestFirst'); // both an input and output
+  sortOption = model<ArticleSortOptions>('oldestFirst'); // both an input and output [()] from the parent to "share" a signal.
 }
