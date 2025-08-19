@@ -10,7 +10,7 @@ You may end up needing a service.
 
 Create a new folder in `src/` called `counter-lab`.
 
-Create an Angular component in that folder called `counter.component.ts`.
+Create an Angular component in that folder called `counter.ts`.
 
 > Remember, you can use the snippet `ngc` then hit tab.
 
@@ -24,14 +24,14 @@ All of the content you create for this feature should be inside this div.
 
 ### Routing
 
-In the `src/app/counter-lab` folder, create a file called `counter.routes.ts`.
+In the `src/counter-lab` folder, create a file called `counter.routes.ts`.
 
 > Hint: You can use the `ngfr` snippet for this if you like.
 
 This should expose a `const` called `COUNTER_ROUTES` with one route defined.
 
 - Path should be an empty string (e.g. `''`)
-- Component should be the `CounterComponent`
+- Component should be the `Counter`
 
 In the `app.routes.ts` file, create a new route called `counter-lab`, that _lazy loads_ the `./counter/counter.routes`.
 
@@ -69,9 +69,9 @@ The `Counter` feature will have a new page that provides the user interface for 
 </div>
 ```
 
-3. In the `counter.routes.ts` file, add a route to this `ui.component.ts` page with the path of `ui`.
+3. In the `counter.routes.ts` file, add a route to this `ui.ts` page with the path of `ui`.
 4. In the `counter.ts` file add a link to the `ui` path with the text of `UI`
-5. Add a `<router-outlet />` inside the `div` in `counter.component.ts`
+5. Add a `<router-outlet />` inside the `div` in `counter.ts`
 
 ### Check Your Work
 
@@ -116,7 +116,7 @@ Here are the rules:
 
 Write the code in your component to display in this element the values `Fizz`, `Buzz`, `FizzBuzz` or nothing, based on the rules as the user increments and decrements the counter.
 
-> **Extra Credit** - extract this to a component with an `input`.
+> **Extra Credit** - extract this to a component with an `input` or `model`.
 
 ### Check Your Work
 
