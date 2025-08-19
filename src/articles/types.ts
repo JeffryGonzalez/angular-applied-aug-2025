@@ -15,3 +15,5 @@ export type ApiArticleItem = {
 };
 
 export type ApiArticles = ApiArticleItem[];
+
+export type ArticleSortOptions = 'oldestFirst' | 'newestFirst';

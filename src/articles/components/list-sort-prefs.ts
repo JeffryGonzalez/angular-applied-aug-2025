@@ -1,4 +1,10 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  signal,
+  output,
+} from '@angular/core';
+import { ArticleSortOptions } from '../types';
 
 @Component({
   selector: 'app-list-sort-prefs',
@@ -7,14 +13,14 @@ import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
   template: ` <div class="join">
     <button
       [disabled]="sortOption() === 'oldestFirst'"
-      (click)="sortOption.set('oldestFirst')"
+      (click)="changeSortOrder('oldestFirst')"
       class="btn join-item"
     >
       Oldest First
     </button>
     <button
       [disabled]="sortOption() === 'newestFirst'"
-      (click)="sortOption.set('newestFirst')"
+      (click)="changeSortOrder('newestFirst')"
       class="btn join-item"
     >
       Newest First
@@ -23,5 +29,11 @@ import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
   styles: ``,
 })
 export class ListSortPrefs {
-  sortOption = signal<'oldestFirst' | 'newestFirst'>('oldestFirst');
+  sortOption = signal<ArticleSortOptions>('oldestFirst');
+  sortChanged = output<ArticleSortOptions>();
+
+  changeSortOrder(by: ArticleSortOptions) {
+    this.sortOption.set(by);
+    this.sortChanged.emit(by); // send  a message to the parent component that this happened.
+  }
 }

@@ -5,13 +5,14 @@ import {
   resource,
   signal,
 } from '@angular/core';
-import { ApiArticleItem, ApiArticles } from '../types';
+import { ApiArticleItem, ApiArticles, ArticleSortOptions } from '../types';
 import { ArticleListItem } from '../components/article-list-item';
+import { ListSortPrefs } from '../components/list-sort-prefs';
 
 @Component({
   selector: 'app-articles-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ArticleListItem],
+  imports: [ArticleListItem, ListSortPrefs],
   template: `
     @if (articlesResource.isLoading()) {
       <div class="alert alert-info">
@@ -20,6 +21,7 @@ import { ArticleListItem } from '../components/article-list-item';
     } @else {
       <div>
         <p>You have {{ numberOfArticles() }} articles!</p>
+        <app-list-sort-prefs (sortChanged)="sortOrderChanged($event)" />
       </div>
       <div class="grid grid-rows">
         @for (article of sortedList(); track article.id) {
@@ -45,16 +47,21 @@ export class List {
     loader: () => fetch('https://fake.api.com/articles').then((r) => r.json()),
   });
 
+  sortBy = signal<ArticleSortOptions>('newestFirst');
+  sortOrderChanged(by: ArticleSortOptions) {
+    this.sortBy.set(by);
+  }
   sortedList = computed(() => {
     const articles = this.articlesResource.value() ?? [];
+    const sortBy = this.sortBy();
     return articles.toSorted((lhs: ApiArticleItem, rhs: ApiArticleItem) => {
       const leftDate = Date.parse(lhs.added);
       const rightDate = Date.parse(rhs.added);
       if (leftDate < rightDate) {
-        return 1;
+        return sortBy === 'oldestFirst' ? 1 : -1;
       }
       if (leftDate > rightDate) {
-        return -1;
+        return sortBy === 'newestFirst' ? -1 : 1;
       }
       return 0;
     });
