@@ -3,8 +3,9 @@ import {
   Component,
   computed,
   resource,
+  signal,
 } from '@angular/core';
-import { ApiArticles } from '../types';
+import { ApiArticleItem, ApiArticles } from '../types';
 import { ArticleListItem } from '../components/article-list-item';
 
 @Component({
@@ -21,7 +22,7 @@ import { ArticleListItem } from '../components/article-list-item';
         <p>You have {{ numberOfArticles() }} articles!</p>
       </div>
       <div class="grid grid-rows">
-        @for (article of articlesResource.value(); track article.id) {
+        @for (article of sortedList(); track article.id) {
           <app-article-list-item [article]="article" />
         } @empty {
           <div class="alert alert-info">
@@ -44,6 +45,20 @@ export class List {
     loader: () => fetch('https://fake.api.com/articles').then((r) => r.json()),
   });
 
+  sortedList = computed(() => {
+    const articles = this.articlesResource.value() ?? [];
+    return articles.toSorted((lhs: ApiArticleItem, rhs: ApiArticleItem) => {
+      const leftDate = Date.parse(lhs.added);
+      const rightDate = Date.parse(rhs.added);
+      if (leftDate < rightDate) {
+        return 1;
+      }
+      if (leftDate > rightDate) {
+        return -1;
+      }
+      return 0;
+    });
+  });
   numberOfArticles = computed(() => {
     const articles = this.articlesResource.value();
     if (articles) {
