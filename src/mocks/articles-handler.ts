@@ -33,7 +33,7 @@ const Articles = [
 
 export const articlesHandlers = [
   http.get('https://fake.api.com/articles', async () => {
-    await delay();
+    await delay(); // 100 - 200ms delay, simulating close to real world.
     return HttpResponse.json(Articles);
   }),
 ];
