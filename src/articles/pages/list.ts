@@ -2,12 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   resource,
   signal,
 } from '@angular/core';
 import { ApiArticleItem, ApiArticles, ArticleSortOptions } from '../types';
 import { ArticleListItem } from '../components/article-list-item';
 import { ListSortPrefs } from '../components/list-sort-prefs';
+import { ArticlesStore } from '../stores/articles-store';
 
 @Component({
   selector: 'app-articles-list',
@@ -21,7 +23,7 @@ import { ListSortPrefs } from '../components/list-sort-prefs';
     } @else {
       <div>
         <p>You have {{ numberOfArticles() }} articles!</p>
-        <app-list-sort-prefs [(sortOption)]="sortBy" />
+        <app-list-sort-prefs />
       </div>
       <div class="grid grid-rows">
         @for (article of sortedList(); track article.id) {
@@ -47,11 +49,11 @@ export class List {
     loader: () => fetch('https://fake.api.com/articles').then((r) => r.json()),
   });
 
-  sortBy = signal<ArticleSortOptions>('newestFirst');
+  store = inject(ArticlesStore);
 
   sortedList = computed(() => {
     const articles = this.articlesResource.value() ?? [];
-    const sortBy = this.sortBy();
+    const sortBy = this.store.sortingBy();
     return articles.toSorted((lhs: ApiArticleItem, rhs: ApiArticleItem) => {
       const leftDate = Date.parse(lhs.added);
       const rightDate = Date.parse(rhs.added);

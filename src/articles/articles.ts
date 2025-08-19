@@ -1,11 +1,20 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { ArticlesStore } from './stores/articles-store';
 
 @Component({
   selector: 'app-articles',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet],
-  template: ` <router-outlet /> `,
+  imports: [RouterOutlet, RouterLink],
+  providers: [ArticlesStore],
+  template: `
+    <div class="flex flex-row gap-4">
+      <a routerLink="/articles" class="btn btn-sm btn-primary">List</a>
+      <a routerLink="prefs" class="btn btn-sm btn-primary">Prefs</a>
+    </div>
+
+    <router-outlet />
+  `,
   styles: ``,
 })
 export class Articles {}
