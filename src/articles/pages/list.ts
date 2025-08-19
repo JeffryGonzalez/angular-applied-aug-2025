@@ -21,7 +21,7 @@ import { ListSortPrefs } from '../components/list-sort-prefs';
     } @else {
       <div>
         <p>You have {{ numberOfArticles() }} articles!</p>
-        <app-list-sort-prefs (sortChanged)="sortOrderChanged($event)" />
+        <app-list-sort-prefs [(sortOption)]="sortBy" />
       </div>
       <div class="grid grid-rows">
         @for (article of sortedList(); track article.id) {
@@ -48,9 +48,7 @@ export class List {
   });
 
   sortBy = signal<ArticleSortOptions>('newestFirst');
-  sortOrderChanged(by: ArticleSortOptions) {
-    this.sortBy.set(by);
-  }
+
   sortedList = computed(() => {
     const articles = this.articlesResource.value() ?? [];
     const sortBy = this.sortBy();
