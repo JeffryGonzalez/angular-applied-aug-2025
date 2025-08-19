@@ -17,6 +17,11 @@ export const routes: Routes = [
       import('../demos/demos.routes').then((r) => r.DEMO_ROUTES),
   },
   {
+    path: 'counter',
+    loadChildren: () =>
+      import('../counter/counter.routes').then((r) => r.COUNTER_ROUTES),
+  },
+  {
     path: 'articles',
     loadChildren: () =>
       import('../articles/articles.routes').then((a) => a.ARTICLES_ROUTES),
