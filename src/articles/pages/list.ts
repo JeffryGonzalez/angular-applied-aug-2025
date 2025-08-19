@@ -1,13 +1,18 @@
-import { JsonPipe } from '@angular/common';
-import { Component, ChangeDetectionStrategy, resource } from '@angular/core';
+import { ChangeDetectionStrategy, Component, resource } from '@angular/core';
+import { ApiArticles } from '../types';
+import { ArticleListItem } from '../components/article-list-item';
 
 @Component({
   selector: 'app-articles-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [JsonPipe],
+  imports: [ArticleListItem],
   template: `
     <p>Article List Goes Here</p>
-    <pre>{{ articlesResource.value() | json }}</pre>
+    <div class="grid grid-rows">
+      @for (article of articlesResource.value(); track article.id) {
+        <app-article-list-item [article]="article" />
+      }
+    </div>
     @if (articlesResource.error()) {
       <div class="alert alert-error">
         There was an error. {{ articlesResource.error() }}
@@ -18,7 +23,7 @@ import { Component, ChangeDetectionStrategy, resource } from '@angular/core';
 })
 export class List {
   // something new an still "experimental" in Angular, but I use it all the time.
-  articlesResource = resource({
+  articlesResource = resource<ApiArticles, unknown>({
     loader: () => fetch('https://fake.api.com/articles').then((r) => r.json()),
   });
 }
