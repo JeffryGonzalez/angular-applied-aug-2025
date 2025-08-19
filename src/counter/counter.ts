@@ -1,10 +1,12 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { CounterStore } from './stores/counter';
 
 @Component({
   selector: 'app-counter',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, RouterLinkActive, RouterOutlet],
+  providers: [CounterStore],
   template: `
     <div class="flex flex-row gap-4">
       <a
