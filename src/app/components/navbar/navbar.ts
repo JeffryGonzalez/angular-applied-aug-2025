@@ -61,5 +61,9 @@ export class Navbar {
       text: 'About',
       href: '/about',
     },
+    {
+      text: 'Articles',
+      href: '/articles',
+    },
   ]);
 }
