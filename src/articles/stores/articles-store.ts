@@ -1,6 +1,7 @@
 import {
   patchState,
   signalStore,
+  withHooks,
   withMethods,
   withProps,
   withState,
@@ -28,5 +29,12 @@ export const ArticlesStore = signalStore(
       setSortBy: (sortingBy: ArticleSortOptions) =>
         patchState(store, { sortingBy }),
     };
+  }),
+  withHooks({
+    onInit() {
+      //   setInterval(() => {
+      //     store.articles.reload();
+      //   }, 5000);
+    },
   }),
 );
