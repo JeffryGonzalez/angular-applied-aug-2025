@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
 import { Counter } from './counter';
-import { Ui } from './pages/ui';
 import { Prefs } from './pages/prefs';
+import { Ui } from './pages/ui';
 import { CounterStore } from './stores/counter';
-import { UiWithZone } from './pages/zone-ui';
 export const COUNTER_ROUTES: Routes = [
   {
     path: '',
@@ -12,7 +11,7 @@ export const COUNTER_ROUTES: Routes = [
     children: [
       {
         path: 'ui',
-        component: UiWithZone,
+        component: Ui,
       },
       {
         path: 'prefs',
