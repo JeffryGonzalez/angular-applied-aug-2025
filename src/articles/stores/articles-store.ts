@@ -8,6 +8,7 @@ import {
 } from '@ngrx/signals';
 import { ApiArticles, ArticleSortOptions } from '../types';
 import { resource } from '@angular/core';
+import { withUserReadingList } from './user-reading-list-feature';
 
 type ArticlesState = {
   sortingBy: ArticleSortOptions;
@@ -16,6 +17,7 @@ export const ArticlesStore = signalStore(
   withState<ArticlesState>({
     sortingBy: 'oldestFirst',
   }),
+  withUserReadingList(),
   withProps(() => {
     return {
       articles: resource<ApiArticles, unknown>({

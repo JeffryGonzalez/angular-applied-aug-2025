@@ -17,6 +17,18 @@ import { JsonPipe } from '@angular/common';
 
     @if (selectedArticle()) {
       <pre>{{ selectedArticle() | json }}</pre>
+      @if (isOnMyReadingList()) {
+        <button
+          (click)="store.removeFromReadingList(id())"
+          class="btn btn-primary"
+        >
+          Remove From Reading List
+        </button>
+      } @else {
+        <button (click)="store.addToReadingList(id())" class="btn btn-primary">
+          Add To Reading List
+        </button>
+      }
     } @else {
       <p>Four Oh Four! No Article With that Id</p>
     }
@@ -32,5 +44,11 @@ export class Details {
     const articles = this.store.articles.value(); // this says - "Get me all the articles, and if they aren't loaded, load them."
 
     return articles?.find((a) => a.id === id);
+  });
+
+  isOnMyReadingList = computed(() => {
+    const id = this.id();
+    const readingList = this.store.readingListIds();
+    return readingList.some((a) => a === id);
   });
 }
