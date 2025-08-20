@@ -1,10 +1,12 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 
 @Component({
   selector: 'app-articles-details',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
-  template: ` <p>Details Coming Soon</p> `,
+  template: ` <p>Showing Details for Article {{ id() }}</p> `,
   styles: ``,
 })
-export class Details {}
+export class Details {
+  id = input.required<number>();
+}
