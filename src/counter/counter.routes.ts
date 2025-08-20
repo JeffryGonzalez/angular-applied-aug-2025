@@ -3,6 +3,7 @@ import { Counter } from './counter';
 import { Ui } from './pages/ui';
 import { Prefs } from './pages/prefs';
 import { CounterStore } from './stores/counter';
+import { UiWithZone } from './pages/zone-ui';
 export const COUNTER_ROUTES: Routes = [
   {
     path: '',
@@ -11,7 +12,7 @@ export const COUNTER_ROUTES: Routes = [
     children: [
       {
         path: 'ui',
-        component: Ui,
+        component: UiWithZone,
       },
       {
         path: 'prefs',
