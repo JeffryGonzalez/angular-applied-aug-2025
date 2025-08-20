@@ -4,12 +4,12 @@ import {
   computed,
   inject,
   resource,
-  signal,
 } from '@angular/core';
-import { ApiArticleItem, ApiArticles, ArticleSortOptions } from '../types';
+
 import { ArticleListItem } from '../components/article-list-item';
 import { ListSortPrefs } from '../components/list-sort-prefs';
 import { ArticlesStore } from '../stores/articles-store';
+import { ApiArticleItem, ApiArticles } from '../types';
 
 @Component({
   selector: 'app-articles-list',
