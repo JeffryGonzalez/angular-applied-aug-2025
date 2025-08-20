@@ -25,7 +25,7 @@ import { ApiArticleItem } from '../types';
         <app-list-sort-prefs />
       </div>
       <div class="grid grid-rows">
-        @for (article of sortedList(); track article.id) {
+        @for (article of store.sortedList(); track article.id) {
           <app-article-list-item [article]="article" />
         } @empty {
           <div class="alert alert-info">
@@ -45,21 +45,6 @@ export class List {
 
   store = inject(ArticlesStore);
 
-  sortedList = computed(() => {
-    const articles = this.store.articles.value() ?? [];
-    const sortBy = this.store.sortingBy();
-    return articles.toSorted((lhs: ApiArticleItem, rhs: ApiArticleItem) => {
-      const leftDate = Date.parse(lhs.added);
-      const rightDate = Date.parse(rhs.added);
-      if (leftDate < rightDate) {
-        return sortBy === 'oldestFirst' ? 1 : -1;
-      }
-      if (leftDate > rightDate) {
-        return sortBy === 'newestFirst' ? -1 : 1;
-      }
-      return 0;
-    });
-  });
   numberOfArticles = computed(() => {
     const articles = this.store.articles.value();
     if (articles) {
