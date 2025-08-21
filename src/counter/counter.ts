@@ -4,7 +4,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { FeatureNavLink, SectionNav } from '../shared/components/section-nav';
+import { FeatureNavLink, SectionNav } from '../shared/components';
 import { CounterStore } from './stores/counter';
 @Component({
   selector: 'app-counter',

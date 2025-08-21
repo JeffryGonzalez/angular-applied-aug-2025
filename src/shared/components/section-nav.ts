@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-export type FeatureNavLink = {
-  href: string;
-  label: string;
-};
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { SectionNavLink } from './section-nav-link';
+import { FeatureNavLink } from './types';
+
 @Component({
   selector: 'app-section-nav',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, SectionNavLink],
   template: `
     <div class="navbar bg-base-300 shadow-sm my-8">
       @if (sectionName()) {
@@ -16,12 +15,7 @@ export type FeatureNavLink = {
       <ul class="menu menu-horizontal px-4">
         @for (link of links(); track link.href) {
           <li>
-            <a
-              [routerLink]="link.href"
-              [routerLinkActive]="['underline']"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >{{ link.label }}</a
-            >
+            <app-section-nav-link [link]="link" />
           </li>
         }
       </ul>
