@@ -23,6 +23,11 @@ export const routes: Routes = [
       import('../counter/counter.routes').then((r) => r.COUNTER_ROUTES),
   },
   {
+    path: 'counter-lab-2',
+    loadChildren: () =>
+      import('../counter-lab-2/counter.routes').then((r) => r.COUNTER_ROUTES),
+  },
+  {
     path: 'articles',
     loadChildren: () =>
       import('../articles/articles.routes').then((a) => a.ARTICLES_ROUTES),
