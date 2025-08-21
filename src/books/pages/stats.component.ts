@@ -89,6 +89,7 @@ export class Stats {
   books = resource({
     loader: () => fetch('/api/books').then((r) => r.json()),
   });
+
   // Helper to normalise the resource value to a typed array
   private getBookList(): BookEntity[] {
     return (this.books.value() ?? []) as BookEntity[];
