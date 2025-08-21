@@ -8,7 +8,6 @@ import {
 import { ArticleListItem } from '../components/article-list-item';
 import { ListSortPrefs } from '../components/list-sort-prefs';
 import { ArticlesStore } from '../stores/articles-store';
-import { ApiArticleItem } from '../types';
 
 @Component({
   selector: 'app-articles-list',
@@ -20,11 +19,13 @@ import { ApiArticleItem } from '../types';
         <span class="loading loading-dots"></span> Loading your stuff
       </div>
     } @else {
-      <div>
-        <p>You have {{ numberOfArticles() }} articles!</p>
+      <div class="flex justify-between items-center my-4">
+        <p class="text-green-600 font-bold">
+          {{ numberOfArticles() }} Articles
+        </p>
         <app-list-sort-prefs />
       </div>
-      <div class="grid grid-rows">
+      <div class="grid  gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
         @for (article of store.sortedList(); track article.id) {
           <app-article-list-item [article]="article" />
         } @empty {

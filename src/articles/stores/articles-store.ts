@@ -7,7 +7,12 @@ import {
   withProps,
   withState,
 } from '@ngrx/signals';
-import { ApiArticleItem, ApiArticles, ArticleSortOptions } from '../types';
+import {
+  ApiArticleItem,
+  ApiArticleModel,
+  ApiArticles,
+  ArticleSortOptions,
+} from '../types';
 import { computed, resource } from '@angular/core';
 import { withUserReadingList } from './user-reading-list-feature';
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
@@ -52,10 +57,13 @@ export const ArticlesStore = signalStore(
             }
             return 0;
           })
-          .map((a) => ({
-            ...a,
-            isOnReadingList: favs.some((id) => a.id === id),
-          }));
+          .map(
+            (a) =>
+              ({
+                ...a,
+                isOnReadingList: favs.some((id) => a.id === id),
+              }) as ApiArticleModel,
+          );
       }),
     };
   }),
