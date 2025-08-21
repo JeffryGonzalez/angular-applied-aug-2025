@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormControl,
@@ -8,10 +8,11 @@ import {
 } from '@angular/forms';
 import { ArticlesStore } from '../stores/articles-store';
 import { ArticleCreateModel, FormGroupType } from '../types';
+import { DevIndicator } from '../../shared/components/dev-indicator';
 @Component({
   selector: 'app-articles-rxjs-add',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, JsonPipe, DevIndicator],
   template: `
     <section class="py-8">
       <h1 id="add-article-heading" class="text-2xl font-bold mb-4">
@@ -50,8 +51,13 @@ import { ArticleCreateModel, FormGroupType } from '../types';
               @if (title.errors?.['minlength']) {
                 <span>Title must be at least 5 characters.</span>
               }
-              @if (title.errors?.['maxLength']) {
+              @if (title.errors?.['maxlength']) {
                 <span>Title must be at most 100 characters.</span>
+              }
+              @defer {
+                <app-dev-indicator>
+                  <pre>{{ form.controls.title.errors | json }}</pre>
+                </app-dev-indicator>
               }
             </div>
           }
@@ -86,7 +92,7 @@ import { ArticleCreateModel, FormGroupType } from '../types';
               @if (description.errors?.['minlength']) {
                 <span>Description must be at least 10 characters.</span>
               }
-              @if (description.errors?.['maxLength']) {
+              @if (description.errors?.['maxlength']) {
                 <span>Description must be at most 500 characters.</span>
               }
             </div>
