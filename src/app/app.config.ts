@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideZoneChangeDetection,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import {
   PreloadAllModules,
   provideRouter,
@@ -15,6 +19,7 @@ import { AuthStore } from '../shared/stores/auth';
 export const appConfig: ApplicationConfig = {
   providers: [
     AuthStore,
+    provideZonelessChangeDetection(),
     provideRouter(
       routes,
       withComponentInputBinding(), // if I have a route parameter and matching -named input, just do it for me.
