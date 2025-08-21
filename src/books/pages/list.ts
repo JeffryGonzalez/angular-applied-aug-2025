@@ -8,9 +8,23 @@ import { Component, ChangeDetectionStrategy, resource } from '@angular/core';
   template: `
     <p>Books List</p>
 
-    <pre>
-    {{ books.value() | json }}
-</pre>
+    <!-- <pre> -->
+    <!-- {{ books.value() | json }} -->
+    @for (book of books.value(); track book.id) {
+      <div
+        class="card bg-primary text-primary-content w-100"
+        style="margin-bottom: 5px;"
+      >
+        <div class="card-body">
+          <h2 class="card-title">{{ book.id }} : {{ book.title }}</h2>
+          <p>By {{ book.author }}</p>
+          <p>{{ book.year }}</p>
+          <div class="card-actions justify-end"></div>
+        </div>
+      </div>
+    }
+
+    <!-- </pre> -->
   `,
   styles: ``,
 })
