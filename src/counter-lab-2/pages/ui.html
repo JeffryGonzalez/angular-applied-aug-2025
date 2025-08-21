@@ -1,0 +1,26 @@
+<div>
+  <br />
+  <button
+    [disabled]="counterService.belowZero()"
+    (click)="counterService.decrementCount()"
+    class="btn btn-primary"
+  >
+    -
+  </button>
+  <span>&nbsp; {{ counterService.current_count() }} &nbsp;</span>
+  <button (click)="counterService.incrementCount()" class="btn btn-primary">
+    +
+  </button>
+  <br />
+  @if (counterService.current_count() === 0) {} @else if
+  (counterService.divisibleByThree() && counterService.divisibleByFive()) {
+  <br />
+  <button class="btn btn-success">FizzBuzz</button>
+  } @else if (counterService.divisibleByFive()) {
+  <br />
+  <button class="btn btn-success">Buzz</button>
+  } @else if (counterService.divisibleByThree()) {
+  <br />
+  <button class="btn btn-success">Fizz</button>
+  }
+</div>
