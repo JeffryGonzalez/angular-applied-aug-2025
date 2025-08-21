@@ -78,5 +78,9 @@ export class Navbar {
       text: 'Books',
       href: '/books',
     },
+    {
+      text: 'Counter Lab 2',
+      href: '/counter-lab-2',
+    },
   ]);
 }
