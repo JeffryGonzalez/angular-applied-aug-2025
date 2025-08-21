@@ -28,6 +28,13 @@ export const routes: Routes = [
       import('../articles/articles.routes').then((a) => a.ARTICLES_ROUTES),
   },
   {
+    path: 'articles-rxjs',
+    loadChildren: () =>
+      import('../articles-rxjs/articles.routes').then(
+        (a) => a.ARTICLES_RXJS_ROUTES,
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
