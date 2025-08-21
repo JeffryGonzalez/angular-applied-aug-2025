@@ -1,20 +1,30 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { FeatureNavLink, SectionNav } from '../shared/components/section-nav';
 import { ArticlesStore } from './stores/articles-store';
 
 @Component({
   selector: 'app-articles',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, RouterLink],
+  imports: [SectionNav],
   providers: [ArticlesStore],
   template: `
-    <div class="flex flex-row gap-4">
-      <a routerLink="/articles" class="btn btn-sm btn-primary">List</a>
-      <a routerLink="prefs" class="btn btn-sm btn-primary">Prefs</a>
-    </div>
-
-    <router-outlet />
+    <app-section-nav sectionName="Articles" [links]="links()">
+      <div>
+        <p>Specific stuff for articles goes here</p>
+      </div>
+    </app-section-nav>
   `,
   styles: ``,
 })
-export class Articles {}
+export class Articles {
+  links = signal<FeatureNavLink[]>([
+    {
+      label: 'Articles',
+      href: '.',
+    },
+    {
+      label: 'Prefs',
+      href: 'prefs',
+    },
+  ]);
+}
