@@ -6,3 +6,12 @@ export type ApiBookItem = {
 };
 
 export type ApiBooks = ApiBookItem[];
+
+export type SortBy = 'Title' | 'Author' | 'Year';
+
+export type SortOrder = 'Asc' | 'Desc';
+
+export type ApiBookSortPref = {
+  sortOrder: SortOrder;
+  sortBy: SortBy;
+};
