@@ -1,5 +1,5 @@
 export type ApiBook = {
-  autthor: string;
+  author: string;
   country: string;
   imageLink: string;
   language: string;
