@@ -33,6 +33,7 @@ export const CounterStore = signalStore(
         patchState(store, { current: store.current() + store.by() }),
       decrement: () =>
         patchState(store, { current: store.current() - store.by() }),
+      reset: () => patchState(store, { current: 0 }),
     };
   }),
   withComputed((store) => {
