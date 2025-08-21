@@ -15,7 +15,6 @@ import { AuthStore } from '../shared/stores/auth';
 export const appConfig: ApplicationConfig = {
   providers: [
     AuthStore,
-    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
       withComponentInputBinding(), // if I have a route parameter and matching -named input, just do it for me.
