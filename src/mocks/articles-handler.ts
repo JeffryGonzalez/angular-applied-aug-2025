@@ -76,7 +76,7 @@ const Articles = [
     title: 'JasperFx YouTube',
     description:
       'YouTube channel of JasperFx - nothing to do with Angular, but super handsome host on some videos.',
-    link: 'https://www.youtube.com/@JasperFx',
+    link: 'https://www.youtube.com/@JasperFxSoftware',
     added: '2024-10-01T10:00:00.000Z',
   },
 ];

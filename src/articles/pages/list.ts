@@ -39,11 +39,6 @@ import { ArticlesStore } from '../stores/articles-store';
   styles: ``,
 })
 export class List {
-  // something new an still "experimental" in Angular, but I use it all the time.
-  //   articlesResource = resource<ApiArticles, unknown>({
-  //     loader: () => fetch('https://fake.api.com/articles').then((r) => r.json()),
-  //   });
-
   store = inject(ArticlesStore);
 
   numberOfArticles = computed(() => {
