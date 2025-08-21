@@ -1,4 +1,9 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  signal,
+  output,
+} from '@angular/core';
 import { ApiBookSortPref, SortBy } from '../types';
 
 @Component({
@@ -44,6 +49,7 @@ import { ApiBookSortPref, SortBy } from '../types';
 })
 export class ListSortPrefs {
   sortOption = signal<ApiBookSortPref>({ sortOrder: 'Asc', sortBy: 'Title' });
+  sortOptionChanged = output<ApiBookSortPref>();
   sortBy = ['Title', 'Author', 'Year'];
 
   changeSortBy(sort: SortBy) {
