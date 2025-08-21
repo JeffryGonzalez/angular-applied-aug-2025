@@ -25,6 +25,4 @@ import { ArticlesStore } from '../stores/articles-store';
 })
 export class ListSortPrefs {
   store = inject(ArticlesStore);
-  //    constructor(private store:ArticlesStore) {}
-  // sortOption = model<ArticleSortOptions>('oldestFirst'); // both an input and output [()] from the parent to "share" a signal.
 }
