@@ -14,3 +14,6 @@ export type ApiBookMetrics = {
   earliestYear: number;
   mostRecentYear: number;
 };
+
+export type BooksSortingOrder = 'Ascending' | 'Descending';
+export type BookSortBy = 'Author' | 'Year' | 'Title';
