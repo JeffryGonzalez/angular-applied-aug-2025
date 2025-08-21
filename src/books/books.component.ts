@@ -7,7 +7,7 @@ import { FeatureNavLink, SectionNav } from '../shared/components';
   imports: [SectionNav],
   template: `
     <app-section-nav sectionName="Books Lab" [links]="links()">
-      <p>Your "Advanced" Lab</p>
+      <p>My "Advanced" Lab</p>
     </app-section-nav>
   `,
   styles: ``,
@@ -17,6 +17,10 @@ export class Books {
     {
       label: 'List',
       href: 'list',
+    },
+    {
+      label: 'Stats',
+      href: 'stats',
     },
   ]);
 }
