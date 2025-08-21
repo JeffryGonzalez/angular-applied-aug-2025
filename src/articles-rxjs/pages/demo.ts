@@ -1,8 +1,6 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { ArticlesApi } from '../services/articles-api';
-import { map } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { AsyncPipe } from '@angular/common';
+import { ArticlesApi } from '../services/articles-api';
 
 @Component({
   selector: 'app-articles-rxjs-demo',
