@@ -1,31 +1,31 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CounterStore } from '../stores/counter';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-counter-ui',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [],
-  providers: [],
   template: `
     <div>
       <button
-        [disabled]="store.decrementShouldBeDisabled()"
-        (click)="store.decrement()"
+        [disabled]="counter() <= 0"
+        (click)="decrement()"
         class="btn btn-primary"
       >
         -
       </button>
-      <span>{{ store.current() }}</span>
-      <button (click)="store.increment()" class="btn btn-success">+</button>
+      <span>{{ counter() }}</span>
+      <button (click)="increment()" class="btn btn-success">+</button>
     </div>
-    @if (store.fizzBuzz()) {
-      <div class="alert alert-info">
-        {{ store.fizzBuzz() }}
-      </div>
-    }
   `,
   styles: ``,
 })
 export class Ui {
-  store = inject(CounterStore);
+  counter = signal(0);
+
+  increment() {
+    this.counter.update((value) => value + 1);
+  }
+
+  decrement() {
+    this.counter.update((value) => (value > 0 ? value - 1 : 0));
+  }
 }

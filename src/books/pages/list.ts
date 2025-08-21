@@ -4,13 +4,11 @@ import { Component, ChangeDetectionStrategy, resource } from '@angular/core';
 @Component({
   selector: 'app-books-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [JsonPipe],
+  imports: [],
   template: `
     <p>Books List</p>
 
-    <pre>
-    {{ books.value() | json }}
-</pre>
+    <pre></pre>
   `,
   styles: ``,
 })
