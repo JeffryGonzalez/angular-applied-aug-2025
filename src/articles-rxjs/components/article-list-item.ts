@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { ApiArticleModel } from '../types';
 
 @Component({
-  selector: 'app-article-list-item',
+  selector: 'app-article-rxjs-list-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DatePipe, RouterLink],
   template: `
@@ -32,7 +32,9 @@ import { ApiArticleModel } from '../types';
         <p>{{ article().description }}</p>
         <p>{{ article().added | date }}</p>
         <div class="card-actions justify-end">
-          <a [routerLink]="['details', article().id]" class="btn btn-primary"
+          <a
+            [routerLink]="['details-rxjs', article().id]"
+            class="btn btn-primary"
             >Details</a
           >
           <a [href]="article().link" target="_blank" class="btn btn-primary"

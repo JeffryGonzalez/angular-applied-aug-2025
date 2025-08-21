@@ -35,6 +35,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'books',
+    loadChildren: () =>
+      import('../books/books.routes').then((r) => r.BOOKS_ROUTES),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },

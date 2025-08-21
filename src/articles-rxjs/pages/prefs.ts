@@ -2,13 +2,13 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ListSortPrefs } from '../components/list-sort-prefs';
 
 @Component({
-  selector: 'app-articles-prefs',
+  selector: 'app-articles-rxjs-prefs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ListSortPrefs],
   template: `
     <p>Preferences</p>
 
-    <app-list-sort-prefs />
+    <app-articles-rxjs-list-sort-prefs />
   `,
   styles: ``,
 })

@@ -9,7 +9,7 @@ import { ArticlesStore } from '../stores/articles-store';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-articles-details',
+  selector: 'app-articles-rxjs-details',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DatePipe],
   template: `

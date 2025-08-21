@@ -10,7 +10,7 @@ import { ListSortPrefs } from '../components/list-sort-prefs';
 import { ArticlesStore } from '../stores/articles-store';
 
 @Component({
-  selector: 'app-articles-list',
+  selector: 'app-articles-rxjs-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ArticleListItem, ListSortPrefs],
   template: `
@@ -23,11 +23,11 @@ import { ArticlesStore } from '../stores/articles-store';
         <p class="text-green-600 font-bold">
           {{ numberOfArticles() }} Articles
         </p>
-        <app-list-sort-prefs />
+        <app-articles-rxjs-list-sort-prefs />
       </div>
       <div class="grid  gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
         @for (article of store.sortedList(); track article.id) {
-          <app-article-list-item [article]="article" />
+          <app-article-rxjs-list-item [article]="article" />
         } @empty {
           <div class="alert alert-info">
             There are no articles! Check back later!

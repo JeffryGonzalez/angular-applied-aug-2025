@@ -74,5 +74,9 @@ export class Navbar {
       text: 'Counter',
       href: '/counter',
     },
+    {
+      text: 'Books',
+      href: '/books',
+    },
   ]);
 }

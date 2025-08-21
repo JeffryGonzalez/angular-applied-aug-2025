@@ -9,7 +9,7 @@ import {
 import { ArticlesStore } from '../stores/articles-store';
 import { ArticleCreateModel, FormGroupType } from '../types';
 @Component({
-  selector: 'app-articles-add',
+  selector: 'app-articles-rxjs-add',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CommonModule],
   template: `

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ArticlesStore } from '../stores/articles-store';
 
 @Component({
-  selector: 'app-list-sort-prefs',
+  selector: 'app-articles-rxjs-list-sort-prefs',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   template: ` <div class="join">
