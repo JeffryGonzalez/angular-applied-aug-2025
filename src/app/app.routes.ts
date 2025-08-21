@@ -40,6 +40,11 @@ export const routes: Routes = [
       import('../books/books.routes').then((r) => r.BOOKS_ROUTES),
   },
   {
+    path: 'counter-lab-2',
+    loadChildren: () =>
+      import('../counter-lab-2/counter.routes').then((r) => r.COUNTER_ROUTES),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },
