@@ -17,6 +17,7 @@ import { CounterStore } from '../stores/counter';
       </button>
       <span>{{ store.current() }}</span>
       <button (click)="store.increment()" class="btn btn-success">+</button>
+      <button (click)="store.reset()" class="btn btn-warning">Reset</button>
     </div>
     @if (store.fizzBuzz()) {
       <div class="alert alert-info">
