@@ -33,6 +33,7 @@ export const CounterStore = signalStore(
         patchState(store, { current: store.current() + store.by() }),
       decrement: () =>
         patchState(store, { current: store.current() - store.by() }),
+      reset: () => patchState(store, { current: 0 }),
     };
   }),
   withComputed((store) => {
@@ -40,6 +41,21 @@ export const CounterStore = signalStore(
       decrementShouldBeDisabled: computed(
         () => store.current() - store.by() < 0,
       ),
+      hideReturnToZero: computed(() => {
+        const current = store.current();
+        const by = store.by();
+        if (current === 0) {
+          return true;
+        } else if (current - by < 0) {
+          return false;
+        }
+        return true;
+      }),
+      hideDecrement: computed(() => {
+        const current = store.current();
+        const by = store.by();
+        return current != 0 && current - by < 0 ? true : false;
+      }),
       fizzBuzz: computed(() => {
         const current = store.current();
         if (current === 0) return '';

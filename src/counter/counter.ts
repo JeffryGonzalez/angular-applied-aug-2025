@@ -18,7 +18,6 @@ import { CounterStore } from './stores/counter';
 })
 export class Counter {
   store = inject(CounterStore);
-
   links = signal<FeatureNavLink[]>([
     {
       label: 'Count!',
