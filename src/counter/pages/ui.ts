@@ -17,6 +17,7 @@ import { CounterStore } from '../stores/counter';
       </button>
       <span>{{ store.current() }}</span>
       <button (click)="store.increment()" class="btn btn-success">+</button>
+      <button>Reset</button>
     </div>
     @if (store.fizzBuzz()) {
       <div class="alert alert-info">
@@ -29,3 +30,4 @@ import { CounterStore } from '../stores/counter';
 export class Ui {
   store = inject(CounterStore);
 }
+// add a button to reset the count
