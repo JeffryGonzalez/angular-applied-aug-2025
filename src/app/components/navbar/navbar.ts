@@ -66,6 +66,10 @@ export class Navbar {
       href: '/articles',
     },
     {
+      text: 'Articles (RxJS)',
+      href: '/articles-rxjs',
+    },
+    {
       text: 'Counter',
       href: '/counter',
     },
