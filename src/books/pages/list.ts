@@ -1,5 +1,11 @@
 import { JsonPipe } from '@angular/common';
-import { Component, ChangeDetectionStrategy, resource } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  resource,
+  computed,
+} from '@angular/core';
+import { ApiBookItem } from '../types';
 
 @Component({
   selector: 'app-books-list',
@@ -7,6 +13,12 @@ import { Component, ChangeDetectionStrategy, resource } from '@angular/core';
   imports: [JsonPipe],
   template: `
     <p>Books List</p>
+    <p>
+      There is currently a whopping {{ this.numberOfBooks() }} books in your
+      collection
+    </p>
+    <p>The oldest book we have is from the year {{ this.earliestYear() }}</p>
+    <p>The newest book we have is from the year {{ this.latestYear() }}</p>
 
     <!-- <pre> -->
     <!-- {{ books.value() | json }} -->
@@ -31,5 +43,33 @@ import { Component, ChangeDetectionStrategy, resource } from '@angular/core';
 export class List {
   books = resource({
     loader: () => fetch('/api/books').then((b) => b.json()),
+  });
+
+  numberOfBooks = computed(() => {
+    const listOfBooks = this.books.value();
+    if (listOfBooks) {
+      return listOfBooks.length;
+    } else {
+      return 0;
+    }
+  });
+
+  listOfYears = computed(() => {
+    const listOfBooks = this.books.value();
+    let result: number[];
+    result = [];
+
+    listOfBooks.forEach((book: ApiBookItem) => {
+      result.push(book.year);
+    });
+    return result;
+  });
+
+  earliestYear = computed(() => {
+    return Math.min(...this.listOfYears());
+  });
+
+  latestYear = computed(() => {
+    return Math.max(...this.listOfYears());
   });
 }
