@@ -77,6 +77,12 @@ import { BooksStore } from '../stores/books-store';
 export class BookStats {
   store = inject(BooksStore);
 
+  formatYear(year: number): string {
+    if (year < 0) return `${Math.abs(year)} BC`;
+    if (year > 0) return `${year} AD`;
+    return `0 (no year 0 in BC/AD)`;
+  }
+
   numOfBooks = computed(() => {
     const books = this.store.books.value();
     if (books) {
@@ -102,7 +108,7 @@ export class BookStats {
       const years = books.map((b) => b.year);
       const earliest = Math.min(...years);
       const latest = Math.max(...years);
-      return `${earliest} to ${latest}`;
+      return `${this.formatYear(earliest)} to ${this.formatYear(latest)}`;
     } else {
       return null;
     }

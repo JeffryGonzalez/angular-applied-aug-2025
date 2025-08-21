@@ -19,5 +19,9 @@ export class Books {
       label: 'List',
       href: 'list',
     },
+    {
+      label: 'Preferences',
+      href: 'prefs',
+    },
   ]);
 }
