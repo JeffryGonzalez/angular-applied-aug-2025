@@ -16,6 +16,10 @@ export const BOOKS_ROUTES: Routes = [
         component: BookStats,
       },
       {
+        path: 'details/:id',
+        component: BookStats,
+      },
+      {
         path: '**',
         redirectTo: 'list',
       },
