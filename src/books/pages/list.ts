@@ -19,6 +19,7 @@ import { ApiBookItem } from '../types';
     </p>
     <p>The oldest book we have is from the year {{ this.earliestYear() }}</p>
     <p>The newest book we have is from the year {{ this.latestYear() }}</p>
+    <p>The average number of pages is {{ this.avgPages() }}</p>
 
     <!-- <pre> -->
     <!-- {{ books.value() | json }} -->
@@ -65,11 +66,29 @@ export class List {
     return result;
   });
 
+  listOfPages = computed(() => {
+    const listOfBooks = this.books.value();
+    let result: number[];
+    result = [];
+
+    listOfBooks.forEach((book: ApiBookItem) => {
+      result.push(book.pages);
+    });
+    return result;
+  });
+
   earliestYear = computed(() => {
     return Math.min(...this.listOfYears());
   });
 
   latestYear = computed(() => {
     return Math.max(...this.listOfYears());
+  });
+
+  avgPages = computed(() => {
+    const sum = this.listOfPages().reduce(
+      (acc, currentVal) => acc + currentVal,
+    );
+    return Math.round(sum / this.listOfPages().length);
   });
 }
