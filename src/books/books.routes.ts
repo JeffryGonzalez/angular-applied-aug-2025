@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { Books } from './books';
-import { List } from './pages/list';
-import { Stats } from './pages/stats';
+import { Books } from './books.component';
+import { List } from './pages/list.component';
+import { Stats } from './pages/stats.component';
 export const BOOKS_ROUTES: Routes = [
   {
     path: '',
